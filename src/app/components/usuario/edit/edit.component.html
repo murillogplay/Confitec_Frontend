@@ -1,0 +1,29 @@
+<p-card> 
+    
+<div class="formgrid grid p-fluid">
+    <div class="field col-12"> 
+
+        <h5>Nome</h5>
+        <input class="w-full" type="text" pInputText [(ngModel)]="usuario.nome"> 
+      
+    </div>
+
+    <div class="field col-12"> 
+        <h5>Sobrenome</h5>
+        <input class="w-full" type="text" pInputText [(ngModel)]="usuario.sobreNome">  
+    </div>
+
+    <div class="field col-6"> 
+        <h5>Data Nascimento</h5>
+        <p-calendar class="w-full" [(ngModel)]="usuario.dataNascimento" [maxDate]="maxDate" [readonlyInput]="true" inputId="date"> 
+        </p-calendar>
+    </div>
+
+    <div class="field col-6"> 
+        <h5>Escolaridade</h5>
+        <p-dropdown class="w-full" [options]="escolaridades" [(ngModel)]="usuario.escolaridade" ></p-dropdown>
+    </div>
+
+</div>
+ 
+</p-card>
