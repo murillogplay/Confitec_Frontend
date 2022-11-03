@@ -10,13 +10,17 @@ import { UsuarioComponent } from './components/usuario/usuario.component';
 import { TopbarComponent } from './components/main/topbar/topbar.component';
 import { TabMenuModule } from 'primeng/tabmenu';
 import { TableModule } from 'primeng/table';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { CardModule } from 'primeng/card'; 
 import { EditComponent } from './components/usuario/edit/edit.component';
 import { ButtonModule } from 'primeng/button';
 import {InputTextModule} from 'primeng/inputtext';
 import {CalendarModule} from 'primeng/calendar';
 import {DropdownModule} from 'primeng/dropdown';
+import {ToastModule} from 'primeng/toast';
+import { ErrorCatchingInterceptor } from './interceptors/error-catching.interceptor';
+import { ConfirmationService, MessageService } from 'primeng/api';
+import {ConfirmPopupModule} from 'primeng/confirmpopup';
 
 @NgModule({
   declarations: [
@@ -38,9 +42,19 @@ import {DropdownModule} from 'primeng/dropdown';
     ButtonModule,
     InputTextModule,
     CalendarModule,
-    DropdownModule
+    DropdownModule,
+    ToastModule,
+    ConfirmPopupModule
   ],
-  providers: [],
+  providers: [
+    MessageService,
+    ConfirmationService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: ErrorCatchingInterceptor,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

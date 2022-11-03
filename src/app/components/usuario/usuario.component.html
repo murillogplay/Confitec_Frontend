@@ -1,26 +1,28 @@
 <div class="grid grid-nogutter justify-content-end m-4 mr-7"> 
     <button pButton pRipple type="button" icon="pi pi-plus" class="p-button-rounded p-button-success" (click)="openEditModal()"></button>
 </div>
-                
+           
+<p-confirmPopup></p-confirmPopup>     
 <p-card header="Usuarios" > 
-    <p-table [value]="usuarios" [scrollable]="true" scrollHeight="400px">
+    <p-table [value]="usuarios" [scrollable]="true" scrollHeight="800px">
         <ng-template pTemplate="header">
             <tr>
-                <th style="min-width:200px">Nome</th>
-                <th style="min-width:200px">Email</th>
-                <th style="min-width:200px">Data Nascimento</th>
-                <th style="min-width:200px">Escolaridade</th>
+                <th>Nome</th>
+                <th>Email</th>
+                <th>Data Nascimento</th>
+                <th>Escolaridade</th>
                 <th style="max-width:120px"></th>
             </tr>
         </ng-template>
         <ng-template pTemplate="body" let-usuario>
             <tr>
-                <td style="min-width:200px">{{usuario.nome + ' ' + usuario.sobreNome}}</td>
-                <td style="min-width:200px">{{usuario.email}}</td>
-                <td style="min-width:200px">{{usuario.dataNascimento}}</td>
-                <td style="min-width:200px">{{usuario.escolaridade}}</td>
-                <td style="max-width:120px">
-                    <button pButton pRipple type="button" icon="pi pi-pencil" class="p-button-rounded p-button-info" (click)="openEditModal(usuario)"></button>
+                <td>{{usuario.nome + ' ' + usuario.sobreNome}}</td>
+                <td>{{usuario.email}}</td>
+                <td>{{usuario.dataNascimento | date: 'dd/MM/yyyy'}}</td>
+                <td>{{usuario.escolaridade}}</td>
+                <td style="max-width:200px">
+                    <button pButton pRipple type="button" icon="pi pi-pencil" class="p-button-rounded p-button-info mr-2" (click)="openEditModal(usuario)"></button>
+                    <button pButton pRipple type="button" icon="pi pi-trash" class="p-button-rounded p-button-danger" (click)="excluir(usuario)"></button>
                 </td>
             </tr>
         </ng-template>

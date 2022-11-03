@@ -20,5 +20,36 @@ export class UsuarioService {
       tap( result => console.log(result))
     )
   }
+ 
+  public post(usuario: Usuario): Observable<Usuario>{
+    return this
+    .http
+    .post<Usuario>(this.baseUrl, usuario)
+    .pipe(
+      first(),
+      tap( result => console.log(result))
+    );
+  }
+
+  public put(usuario: Usuario): Observable<Usuario>{
+    return this
+    .http
+    .put<Usuario>(this.baseUrl, usuario)
+    .pipe(
+      first(),
+      tap( result => console.log(result))
+    );
+  }
+  
+  public delete(usuario: Usuario): Observable<Usuario>{
+    return this
+    .http
+    .delete<Usuario>(this.baseUrl + '/' + usuario.id )
+    .pipe(
+      first(),
+      tap( result => console.log(result))
+    );
+  }
+
 
 }

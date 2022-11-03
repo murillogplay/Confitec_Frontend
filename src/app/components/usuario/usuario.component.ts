@@ -3,6 +3,7 @@ import { Usuario } from 'src/app/models/Usuario';
 import { UsuarioService } from 'src/app/services/usuario.service';
 import { EditComponent } from './edit/edit.component';
 import { DialogService } from 'primeng/dynamicdialog';
+import {ConfirmationService, MessageService} from 'primeng/api';
 
 @Component({
   selector: 'app-usuario',
@@ -14,34 +15,51 @@ export class UsuarioComponent implements OnInit {
  
   usuarios :  Usuario[] = [];
   constructor(private usuarioService: UsuarioService,
-              private dialogService: DialogService) { }
+              private dialogService: DialogService,
+              private confirmationService: ConfirmationService,
+              private messageService: MessageService) { }
 
   ngOnInit(): void {
     this.list();
   }
 
-  list(){
-    
-    this.usuarioService.list().subscribe(  (data) =>  this.usuarios=Object.assign(data) ) 
-      
-  }
+  list(){ this.usuarioService.list().subscribe( (data) =>  this.usuarios=Object.assign(data) ) }
+
   openEditModal(usuario?:Usuario){
     
     const ref = this.dialogService.open(EditComponent, {
       data: {
-        usuario:  usuario
+        usuario:  usuario  
       },
       header: 'Atualizar usuario',
-      width: '80%',
-      height: '80%', 
+      width: '80%', 
         baseZIndex: 10000
     });
 
     ref.onClose.subscribe(
-      () => {
-        this.list();
+      (close) => {
+        if (close) this.list();
       }
     )
   }
    
+  excluir(usuario:Usuario){
+
+    this.confirmationService.confirm({
+      target: event.target,
+      message: 'Confirma a exclusão do usuario?',
+      acceptLabel:'Sim',
+      rejectLabel:'Não',
+      icon: 'pi pi-exclamation-triangle',
+      accept: () => {
+        this.usuarioService.delete(usuario).subscribe( () =>  {
+            this.messageService.add({severity: 'success', summary: 'Registro excluído!', life: 3000})
+            this.list();
+        })
+      },
+      reject: () => {
+          console.log("exclusão cancelada")
+      }
+  });
+  }
 }

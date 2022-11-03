@@ -16,8 +16,8 @@ export class TopbarComponent implements OnInit {
   activeItem: MenuItem | undefined  ;
 
   ngOnInit(): void {
-   this.items = [
-    {label: 'home', icon: 'pi pi-fw pi-home', routerLink: ['/']},
+    this.items = [
+      {label: 'home', icon: 'pi pi-fw pi-home', routerLink: ['/']},
       {label: 'Usuario', icon: 'pi pi-fw pi-chart-bar', routerLink: ['/usuario']},
     ];
 
