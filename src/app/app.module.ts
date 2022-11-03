@@ -21,6 +21,8 @@ import {ToastModule} from 'primeng/toast';
 import { ErrorCatchingInterceptor } from './interceptors/error-catching.interceptor';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import {ConfirmPopupModule} from 'primeng/confirmpopup';
+import {TooltipModule} from 'primeng/tooltip';
+import { HomeComponent } from './components/home/home.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +30,7 @@ import {ConfirmPopupModule} from 'primeng/confirmpopup';
     MainComponent,
     UsuarioComponent,
     TopbarComponent, 
-    EditComponent
+    EditComponent, HomeComponent
   ],
   imports: [
     BrowserModule,
@@ -44,7 +46,8 @@ import {ConfirmPopupModule} from 'primeng/confirmpopup';
     CalendarModule,
     DropdownModule,
     ToastModule,
-    ConfirmPopupModule
+    ConfirmPopupModule,
+    TooltipModule
   ],
   providers: [
     MessageService,

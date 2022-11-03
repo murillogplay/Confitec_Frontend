@@ -1,5 +1,5 @@
 <div class="grid grid-nogutter justify-content-end m-4 mr-7"> 
-    <button pButton pRipple type="button" icon="pi pi-plus" class="p-button-rounded p-button-success" (click)="openEditModal()"></button>
+    <button pButton pRipple type="button" icon="pi pi-plus" class="p-button-rounded p-button-success" (click)="openEditModal()" pTooltip="Adicionar novo usuário" tooltipPosition="top"></button>
 </div>
            
 <p-confirmPopup></p-confirmPopup>     
@@ -21,8 +21,8 @@
                 <td>{{usuario.dataNascimento | date: 'dd/MM/yyyy'}}</td>
                 <td>{{getEscolaridade(usuario.escolaridade)}}</td>
                 <td style="max-width:200px">
-                    <button pButton pRipple type="button" icon="pi pi-pencil" class="p-button-rounded p-button-info mr-2" (click)="openEditModal(usuario)"></button>
-                    <button pButton pRipple type="button" icon="pi pi-trash" class="p-button-rounded p-button-danger" (click)="excluir(usuario)"></button>
+                    <button pButton pRipple type="button" icon="pi pi-pencil" class="p-button-rounded p-button-info mr-2" (click)="openEditModal(usuario)" pTooltip="Editar usuario" tooltipPosition="top"></button>
+                    <button pButton pRipple type="button" icon="pi pi-trash" class="p-button-rounded p-button-danger" (click)="excluir(usuario)" pTooltip="Excluir usuario" tooltipPosition="top"></button>
                 </td>
             </tr>
         </ng-template>
