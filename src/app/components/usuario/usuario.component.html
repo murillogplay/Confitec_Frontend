@@ -11,7 +11,7 @@
                 <th>Email</th>
                 <th>Data Nascimento</th>
                 <th>Escolaridade</th>
-                <th style="max-width:120px"></th>
+                <th style="max-width:200px"></th>
             </tr>
         </ng-template>
         <ng-template pTemplate="body" let-usuario>
@@ -19,7 +19,7 @@
                 <td>{{usuario.nome + ' ' + usuario.sobreNome}}</td>
                 <td>{{usuario.email}}</td>
                 <td>{{usuario.dataNascimento | date: 'dd/MM/yyyy'}}</td>
-                <td>{{usuario.escolaridade}}</td>
+                <td>{{getEscolaridade(usuario.escolaridade)}}</td>
                 <td style="max-width:200px">
                     <button pButton pRipple type="button" icon="pi pi-pencil" class="p-button-rounded p-button-info mr-2" (click)="openEditModal(usuario)"></button>
                     <button pButton pRipple type="button" icon="pi pi-trash" class="p-button-rounded p-button-danger" (click)="excluir(usuario)"></button>
